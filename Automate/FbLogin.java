@@ -1,28 +1,40 @@
 package Automate;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class FbLogin {
-	
-	public static void main(String[] args) throws Exception {
-		
-		WebDriver wd=new ChromeDriver();
-		System.setProperty("webdriver.chrome.driver", "C:\\ChromeDriver\\chromedriver.exe");
-		
-		wd.get("https://facebook.com");
-		wd.manage().window().maximize();
-		Thread.sleep(3000);
-		wd.findElement(By.xpath("//input[@id='email']")).sendKeys("kakimukkala.satishnarayana@gmail.com");
-		wd.findElement(By.xpath("//input[@id='pass']")).sendKeys("satish_09");
-		Thread.sleep(3000);
-		wd.findElement(By.xpath("//button[@name='login']")).click();
-		System.out.println("log in successful");
-		Thread.sleep(7000);
-	     wd.close();
-		
-	
-	}
+public class FbLogin  {
 
-}
+    WebDriver wd;
+    void openBrowser() throws Exception {
+        System.setProperty("webdriver.chrome.driver", "E:\\chromedriver\\chromedriver.exe");
+        wd = new ChromeDriver();
+        wd.get("https://Facebook.com");
+        wd.manage().window().maximize();
+        Thread.sleep(3000);
+        System.out.println(wd.getTitle());
+        wd.quit();
+    }
+    }
+
+class Amazon_Log extends FbLogin {
+
+    void openBrowser() throws Exception {
+
+        super.openBrowser();
+        wd = new FirefoxDriver();
+        wd.get("https://amazon.in");
+        wd.manage().window().maximize();
+        Thread.sleep(3000);
+        System.out.println(wd.getTitle());
+        wd.quit();
+    }}
+
+    class Test{
+
+    public static void main(String[] args) throws Exception {
+
+        Amazon_Log al=new Amazon_Log();
+        al.openBrowser();
+    } }
